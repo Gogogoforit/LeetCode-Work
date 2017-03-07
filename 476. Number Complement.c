@@ -1,11 +1,10 @@
-// https://leetcode.com/problems/number-complement/?tab=Description
-
 int findComplement(int num) {
     int size = 0;
     int y = 1;
-    while(num)
+    int temp = num;
+    while(temp)
     {
-        num = num>>1;  //101,num=2.5=2=010,size=1;num=2,nume==001,size=2; num =1,num=0,size=3;
+        temp = temp>>1;  //101,num=2.5=2=010,size=1;num=2,nume==001,size=2; num =1,num=0,size=3;
         size++;
     }
     
