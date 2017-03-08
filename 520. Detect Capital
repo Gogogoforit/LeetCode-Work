@@ -1,10 +1,12 @@
 //https://leetcode.com/problems/detect-capital/?tab=Description
 
+
+
 bool detectCapitalUse(char* word)
 {
     int i;
     int t = 0;
-    int flag = 1;
+    int flag = 3;
     
     if(strlen(word)== 1)
         return true;
@@ -19,13 +21,9 @@ bool detectCapitalUse(char* word)
                     if(word[i]>='A' && word[i] <='Z')
                         flag=0;
                 }
-                if(flag==1)
-                    return true;
-                else
-                    return false;    
             }    
             
-            flag = 3;
+           
             if(word[0]>='A' && word[0] <='Z')
                 for(i=1;i<(strlen(word)); i++)
                 {
@@ -35,10 +33,9 @@ bool detectCapitalUse(char* word)
                         t = 2;
                     flag = flag &t;
                 }
-                if(flag==1 || flag ==2)
-                    return true;
-                else
-                    return false;
-            
+      if(flag==1 || flag ==2 ||flag==3)
+            return true;
+      else
+            return false;           
     }
 }
