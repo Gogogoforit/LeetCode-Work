@@ -27,5 +27,5 @@ int* constructRectangle(int area, int* returnSize) {
     
     }
     
-    return returnSize;
+    return p;
 }
