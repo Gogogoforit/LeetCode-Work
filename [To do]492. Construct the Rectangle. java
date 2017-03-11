@@ -7,13 +7,16 @@
  */
  //先是C语言部分
  /*
+#include <stdio.h>
+#include <stdlib.h>
+
+#include<math.h>
 int* constructRectangle(int area, int* returnSize) {
     int i,j,Gap,MinGap;
-    i= ceil(sqrt(area));
     Gap = MinGap = area;
     int *p = (int*)malloc(sizeof(int) * 2);
-    
-    for(i; i<=area;i++)
+
+    for(i= ceil(sqrt(area)); i<=area;i++)
     {
         if(area%i == 0)
         {
@@ -26,11 +29,26 @@ int* constructRectangle(int area, int* returnSize) {
                 p[1]= j;
             }
         }
-    
+
     }
-    
     return p;
 }
+
+int main()
+{
+    int i;
+    int Area = 0;
+    printf("请输入AREA!\n");
+    scanf("%d",&Area);
+    int a[2]={0,0};
+    int *p =(int *)malloc(sizeof(int)*2);
+    p=constructRectangle(Area,a);
+    for(i=0;i<2;i++)
+        printf("%d ",p[i]);
+
+    return 0;
+}
+
 */
 //再是java部分。
 public class Solution {
