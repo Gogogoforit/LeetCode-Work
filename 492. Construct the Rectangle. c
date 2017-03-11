@@ -1,55 +1,34 @@
 //https://leetcode.com/problems/construct-the-rectangle/?tab=Description
 
-//C语言怎么跑都不太对QAQ
+
+ //先是C语言部分
 /**
  * Return an array of size *returnSize.
  * Note: The returned array must be malloced, assume caller calls free().
  */
- //先是C语言部分
- /*
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
-#include<math.h>
 int* constructRectangle(int area, int* returnSize) {
-    int i,j,Gap,MinGap;
-    Gap = MinGap = area;
+    int i;
     int *p = (int*)malloc(sizeof(int) * 2);
-
-    for(i= ceil(sqrt(area)); i<=area;i++)
+    
+    for(i= 1; i*i <=area;i++)  //大致思想是，小的那个数，必然比area的平方根小，所以，可以利用它来求解
     {
         if(area%i == 0)
         {
-            j = area/i;
-            Gap = i-j;
-            if( Gap <= MinGap)
-            {
-                MinGap = Gap;
-                p[0]= i;
-                p[1]= j;
-            }
+                p[0]= area/i;
+                p[1]= i;
         }
 
     }
+    * returnSize=2; //这里很重要，主要的一点是，和java不同，c语言涉及数组，必须说明数组长度。
     return p;
 }
 
-int main()
-{
-    int i;
-    int Area = 0;
-    printf("请输入AREA!\n");
-    scanf("%d",&Area);
-    int a[2]={0,0};
-    int *p =(int *)malloc(sizeof(int)*2);
-    p=constructRectangle(Area,a);
-    for(i=0;i<2;i++)
-        printf("%d ",p[i]);
 
-    return 0;
-}
 
-*/
 //再是java部分。
 public class Solution {
     public int[] constructRectangle(int area) {
