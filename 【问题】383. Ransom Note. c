@@ -1,0 +1,42 @@
+//https://leetcode.com/submissions/detail/96443527/
+/*他非说我错了。。。摊手。。
+Input:
+"fffbfg"
+"effjfggbffjdgbjjhhdegh"
+
+Output:
+false
+
+Expected:
+true
+*/
+
+bool canConstruct(char* ransomNote, char* magazine) {
+    int flag=0;
+    int i,j,N;
+    i=j=N=0;
+    
+    if(ransomNote[0]=='\0')
+        flag=1;
+    while(j<strlen(ransomNote) && i<strlen(magazine))
+    {
+        if(ransomNote[j]==magazine[i])
+        {
+            i++;
+            j++;
+        
+            if(j==strlen(ransomNote))
+                flag = 1;
+        }
+        else
+        {
+            N++;
+            i=N;
+            j=0;
+        }
+    }
+    if(flag==1)
+        return true;
+    else
+        return false;
+}
