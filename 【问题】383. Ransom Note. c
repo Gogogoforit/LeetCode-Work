@@ -1,4 +1,5 @@
 //https://leetcode.com/submissions/detail/96443527/
+//终于把题读懂了，但是c总是超时，让我心伤。。。。借鉴一下分析，用C++好了。。。
 /*他非说我错了。。。摊手。。
 Input:
 "fffbfg"
@@ -10,7 +11,7 @@ false
 Expected:
 true
 */
-
+/*
 bool canConstruct(char* ransomNote, char* magazine) {
     int flag=0;
     int i,j,N;
@@ -40,3 +41,17 @@ bool canConstruct(char* ransomNote, char* magazine) {
     else
         return false;
 }
+*/
+
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+        vector<int> vec(26, 0);
+        for (int i = 0; i < magazine.size(); ++i)
+            ++vec[magazine[i] - 'a'];
+        for (int j = 0; j < ransomNote.size(); ++j)
+            if (--vec[ransomNote[j] - 'a'] < 0)
+                return false;
+        return true;
+    }
+};
