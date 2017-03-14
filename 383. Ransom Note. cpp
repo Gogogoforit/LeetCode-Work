@@ -1,0 +1,29 @@
+//https://leetcode.com/submissions/detail/96443527/
+//终于把题读懂了。。。。借鉴一下分析，用C++好了。。。
+/*
+Input:
+"fffbfg"
+"effjfggbffjdgbjjhhdegh"
+
+Output:
+false
+
+Expected:
+true
+*/
+
+//以下是C++
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+        vector<int> vec(26, 0);
+        for (int i = 0; i < magazine.size(); ++i)
+            ++vec[magazine[i] - 'a'];
+        for (int j = 0; j < ransomNote.size(); ++j)
+            if (--vec[ransomNote[j] - 'a'] < 0)
+                return false;
+        return true;
+    }
+};
+
+
