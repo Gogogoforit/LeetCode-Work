@@ -20,7 +20,7 @@ public:
             else if(count==3)
                 v[i]="Bronze Medal";
             else
-                v[i]=to_string(count); //数字转为字符串
+                v[i]=to_string(count); //public String toString()返回该对象的字符串表示。
         }
         
     return v;
