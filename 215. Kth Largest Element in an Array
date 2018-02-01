@@ -1,0 +1,12 @@
+#include <iostream>     // std::cout
+#include <algorithm>    // std::sort
+#include <vector>       // std::vector
+bool myfunction (int i,int j) { return (i>j); }
+
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        std::sort (nums.begin(), nums.begin()+nums.size(),myfunction); 
+        return nums[k-1];
+    }
+};
