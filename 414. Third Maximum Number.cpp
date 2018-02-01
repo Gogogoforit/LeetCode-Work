@@ -25,7 +25,7 @@ public:
                     }
                     else{
                         big_2=(big_1<nums[i])?big_1:nums[i];
-                        big_1=(big_1>nums[i])?big_1:nums[i];
+//                        big_1=(big_1>nums[i])?big_1:nums[i];
                         big_2_exist=true;
                         continue;
                     }
@@ -73,5 +73,25 @@ public:
     }
 };
 
-
-
+//下面的部分为改正版。。原版我这里为了回避最小整数，所以超级复杂。。。。然而其实没有这么麻烦的。。。
+class Solution {
+public:
+    int thirdMax(vector<int>& nums) {
+        long first = LONG_MIN, second = LONG_MIN, third = LONG_MIN;
+        for (int num : nums) {
+            if (num > first) {
+                third = second;
+                second = first;
+                first = num;
+            } else if (num > second && num < first) {
+                third = second;
+                second = num;
+            } else if (num > third && num < second) {
+                third = num;
+            }
+        }
+        return (third == LONG_MIN || third == second) ? first : third;
+    }
+};
+//参考：C++ 常量范围 
+//http://blog.sina.com.cn/s/blog_696226720100o164.html
