@@ -1,0 +1,76 @@
+//最初做法
+/**
+ * Definition for an interval.
+ * struct Interval {
+ *     int start;
+ *     int end;
+ *     Interval() : start(0), end(0) {}
+ *     Interval(int s, int e) : start(s), end(e) {}
+ * };
+ */
+class Solution {
+public:   
+      
+    vector<Interval> merge(vector<Interval>& intervals) {
+        if(intervals.size() <= 1)
+            return intervals;
+
+
+        for(int i=0;i<intervals.size();i++) {
+            for(int j=i+1;j<intervals.size();j++) {
+                if(intervals[i].start> intervals[j].start) {
+                    int temp = intervals[j].start;
+                    intervals[j].start = intervals[i].start;
+                    intervals[i].start = temp;
+                    
+                    int t = intervals[j].end;
+                    intervals[j].end = intervals[i].end;
+                    intervals[i].end = t;
+                }
+            }
+        }
+        
+        
+        int i = 0;
+        while(i < intervals.size()-1) {
+            int j = i+1;
+
+            if(intervals[i].end >= intervals[j].start) {
+                int new_end = (intervals[i].end < intervals[j].end)?intervals[j].end:intervals[i].end;
+                intervals.erase(intervals.begin() + j);
+                intervals[i].end = new_end;
+                continue;
+            }
+            else {
+                i++;
+            }
+        }
+        return intervals;
+    }
+};
+
+
+
+//改进方法：
+class Solution {
+public:
+    static bool comp(const Interval& a, const Interval& b){
+        return(a.start < b.start);
+    }
+    vector<Interval> merge(vector<Interval>& intervals) {
+        vector<Interval> result;
+        if(intervals.empty()){
+            return result;
+        }
+        sort(intervals.begin(), intervals.end(), comp);
+        result.push_back(intervals[0]);
+        for(int i = 1; i < intervals.size(); i ++){
+            if(result.back().end < intervals[i].start){
+                result.push_back(intervals[i]);
+            } else{
+                result.back().end = max(result.back().end, intervals[i].end);
+            }   
+        }
+        return result;
+    }
+};
