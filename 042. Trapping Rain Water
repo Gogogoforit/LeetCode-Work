@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        if(height.size()<=1)
+            return 0;
+        
+        int leftmax[height.size()] = {0};
+        int rightmax[height.size()] = {0};
+        int len = height.size();
+        int curmax = 0;
+        
+        for(int i=0;i<len;i++) {
+            leftmax[i] = curmax;
+            curmax = max(curmax, height[i]);
+        }
+        
+        curmax = 0;
+        for(int i= len-1;i>=0;i--) {
+            rightmax[i] = curmax;
+            curmax = max(curmax, height[i]);
+        }
+        
+        int sum = 0;
+        for(int i=0;i<len;i++) {
+            if(rightmax[i] != 0 && leftmax[i] != 0) {
+                int column = min(leftmax[i],rightmax[i]) - height[i];
+                column = max(column,0);
+                sum += column;
+            }
+        }   
+        return sum;
+    }
+};
