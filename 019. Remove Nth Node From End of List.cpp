@@ -38,6 +38,7 @@ public:
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
+        //这里创建一个新节点，是可能存在，链表里只有一个元素，然后删除了就成空链表的情况
         ListNode* sta = new ListNode(0);
         ListNode* slow = sta;
         ListNode* fast = sta;
