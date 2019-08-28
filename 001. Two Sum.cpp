@@ -13,3 +13,33 @@ public:
         }
     }
 };
+
+//2019年8月28日更新：
+//思路，新建一个Hash Table，再从Hash Table中，去进行查询。
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map <int,int> map;
+        unordered_map <int,int>::iterator it;
+        vector<int> s;
+    
+        for(int i = 0; i < nums.size(); i++){
+            map.emplace(nums[i], i);
+        
+        }
+        for(int i = 0; i < nums.size(); i++){
+
+            it = map.find(target-nums[i]);
+            if(it != map.end() && map[target-nums[i]] != i){
+
+                s.push_back(i);
+                s.push_back(map[target-nums[i]]);
+
+                return s;           
+            }
+        }
+        return s;
+
+    }
+};
