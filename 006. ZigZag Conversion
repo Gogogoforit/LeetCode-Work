@@ -1,0 +1,29 @@
+class Solution {
+public:
+    string convert(string s, int numRows) {
+        string result = "";
+        
+        if (numRows < 1)
+            return "" ;
+        if (numRows == 1)
+            return s;
+        
+        vector<string> rows(min(numRows, int(s.size())));
+        int curRow = 0;
+        bool isBorder = false;
+        
+        for(char c:s)
+        {
+            rows[curRow] += c;
+            if(curRow == 0 || curRow == numRows - 1)
+                isBorder = !isBorder;
+            curRow += (isBorder==true)?1:-1;
+        }
+        
+        for(string s : rows)
+            result.append(s);
+        
+        return result;   
+    }
+    
+};
